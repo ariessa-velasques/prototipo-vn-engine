@@ -1,0 +1,198 @@
+{
+  "version": 2,
+  "story": {
+    "title": "Depois da Aula",
+    "about": "Depois da Aula — uma visual novel curta de demonstração.\n\nHistória e montagem: Ariessa Velasques.\nCriada com o protótipo de engine no-code desenvolvido no TCC (Unipampa).",
+    "startSceneId": "cena-convite",
+    "scenes": [
+      {
+        "id": "cena-convite",
+        "title": "Convite na sala",
+        "backgroundId": "bg-sala-de-aula",
+        "dialogue": [
+          {
+            "id": "fala-convite-1",
+            "type": "line",
+            "text": "O sinal tocou faz tempo, mas a sala ainda não esvaziou por completo.",
+            "speakerId": "",
+            "expression": ""
+          },
+          {
+            "id": "fala-convite-bruno",
+            "type": "line",
+            "text": "Vou nessa, pessoal. Bom estudo pra vocês!",
+            "speakerId": "bruno",
+            "expression": "neutro"
+          },
+          {
+            "id": "fala-convite-2",
+            "type": "line",
+            "text": "Ei! Achei que você já tinha ido embora.",
+            "speakerId": "aiko",
+            "expression": "feliz"
+          },
+          {
+            "id": "fala-convite-3",
+            "type": "line",
+            "text": "Quer estudar comigo no parque depois da aula? A prova é sexta…",
+            "speakerId": "aiko",
+            "expression": "neutra"
+          },
+          {
+            "id": "escolha-convite",
+            "type": "choice",
+            "text": "O que responder?",
+            "options": [
+              {
+                "id": "opcao-aceitar",
+                "text": "Aceitar o convite",
+                "targetSceneId": "cena-parque"
+              },
+              {
+                "id": "opcao-recusar",
+                "text": "Recusar educadamente",
+                "targetSceneId": "cena-sozinha"
+              }
+            ]
+          }
+        ],
+        "nextSceneId": null,
+        "graphPosition": {
+          "x": 80,
+          "y": 140
+        },
+        "characters": {
+          "esquerda": "bruno",
+          "centro": "aiko",
+          "direita": null
+        }
+      },
+      {
+        "id": "cena-parque",
+        "title": "Tarde no parque",
+        "backgroundId": "bg-parque",
+        "dialogue": [
+          {
+            "id": "fala-parque-1",
+            "type": "line",
+            "text": "Que bom que você veio! O pôr do sol daqui é o melhor da cidade.",
+            "speakerId": "aiko",
+            "expression": "feliz"
+          },
+          {
+            "id": "fala-parque-2",
+            "type": "line",
+            "text": "Tá, tá… eu prometo que a gente estuda de verdade. Depois do lanche.",
+            "speakerId": "aiko",
+            "expression": "neutra"
+          },
+          {
+            "id": "fala-parque-3",
+            "type": "line",
+            "text": "A tarde passou rápido entre exercícios, risadas e um caderno cheio de anotações.",
+            "speakerId": "",
+            "expression": ""
+          }
+        ],
+        "nextSceneId": "cena-fim-bom",
+        "graphPosition": {
+          "x": 480,
+          "y": 40
+        },
+        "characters": {
+          "esquerda": null,
+          "centro": null,
+          "direita": "aiko"
+        }
+      },
+      {
+        "id": "cena-sozinha",
+        "title": "Sozinha na sala",
+        "backgroundId": "bg-sala-de-aula",
+        "dialogue": [
+          {
+            "id": "fala-sozinha-1",
+            "type": "line",
+            "text": "A sala foi esvaziando aos poucos, até sobrar só o barulho do ventilador.",
+            "speakerId": "",
+            "expression": ""
+          },
+          {
+            "id": "fala-sozinha-aiko",
+            "type": "line",
+            "speakerId": "aiko",
+            "expression": "triste",
+            "text": "Tudo bem… fica pra próxima, então."
+          },
+          {
+            "id": "fala-sozinha-2",
+            "type": "line",
+            "text": "Talvez amanhã fosse um bom dia para mudar de ideia.",
+            "speakerId": "",
+            "expression": ""
+          }
+        ],
+        "nextSceneId": "cena-fim-reflexivo",
+        "graphPosition": {
+          "x": 480,
+          "y": 300
+        },
+        "characters": {
+          "esquerda": null,
+          "centro": "aiko",
+          "direita": null
+        }
+      },
+      {
+        "id": "cena-fim-bom",
+        "title": "Fim — uma nova amizade",
+        "backgroundId": "bg-quarto",
+        "dialogue": [
+          {
+            "id": "fala-fim-bom-1",
+            "type": "line",
+            "text": "Naquela noite, estudar pareceu bem menos solitário do que costumava ser.",
+            "speakerId": "",
+            "expression": ""
+          }
+        ],
+        "nextSceneId": null,
+        "graphPosition": {
+          "x": 880,
+          "y": 40
+        },
+        "characters": {
+          "esquerda": null,
+          "centro": null,
+          "direita": null
+        }
+      },
+      {
+        "id": "cena-fim-reflexivo",
+        "title": "Fim — quem sabe amanhã",
+        "backgroundId": "bg-quarto",
+        "dialogue": [
+          {
+            "id": "fala-fim-reflexivo-1",
+            "type": "line",
+            "text": "Deitada na cama, ela ficou pensando no convite. Amanhã, quem sabe, a resposta seria outra.",
+            "speakerId": "",
+            "expression": ""
+          }
+        ],
+        "nextSceneId": null,
+        "graphPosition": {
+          "x": 880,
+          "y": 300
+        },
+        "characters": {
+          "esquerda": null,
+          "centro": null,
+          "direita": null
+        }
+      }
+    ]
+  },
+  "importedBackgrounds": [],
+  "importedCharacters": []
+}

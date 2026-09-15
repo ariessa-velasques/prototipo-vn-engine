@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <!-- Placeholder: parque ao entardecer -->
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7b267"/>
+      <stop offset="0.6" stop-color="#f4845f"/>
+      <stop offset="1" stop-color="#c85a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#ceu)"/>
+  <circle cx="640" cy="430" r="110" fill="#ffe9a8"/>
+  <rect y="450" width="1280" height="270" fill="#5a7d4a"/>
+  <ellipse cx="640" cy="460" rx="900" ry="40" fill="#6b9158"/>
+  <path d="M 300 720 Q 640 560 980 720 Z" fill="#c9b08a"/>
+  <rect x="150" y="300" width="26" height="180" fill="#5c4230"/>
+  <circle cx="163" cy="270" r="90" fill="#3f5e35"/>
+  <circle cx="110" cy="310" r="60" fill="#3f5e35"/>
+  <circle cx="220" cy="310" r="60" fill="#3f5e35"/>
+  <rect x="1090" y="280" width="26" height="200" fill="#5c4230"/>
+  <circle cx="1103" cy="250" r="95" fill="#3f5e35"/>
+  <circle cx="1045" cy="300" r="62" fill="#3f5e35"/>
+  <circle cx="1165" cy="300" r="62" fill="#3f5e35"/>
+  <rect x="850" y="480" width="180" height="16" rx="6" fill="#7a5a3a"/>
+  <rect x="850" y="440" width="180" height="14" rx="6" fill="#7a5a3a"/>
+  <rect x="862" y="454" width="14" height="70" fill="#5c4230"/>
+  <rect x="1004" y="454" width="14" height="70" fill="#5c4230"/>
+</svg>

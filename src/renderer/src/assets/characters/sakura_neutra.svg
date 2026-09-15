@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900">
+  <!-- Sakura — expressão neutra (maria-chiquinha rosa, vestido) -->
+  <circle cx="105" cy="240" r="48" fill="#d96a9c"/>
+  <circle cx="315" cy="240" r="48" fill="#d96a9c"/>
+  <path d="M 90 280 Q 80 420 105 500 L 140 480 Q 120 380 128 285 Z" fill="#d96a9c"/>
+  <path d="M 330 280 Q 340 420 315 500 L 280 480 Q 300 380 292 285 Z" fill="#d96a9c"/>
+  <rect x="185" y="230" width="50" height="60" fill="#f5d5b8"/>
+  <circle cx="210" cy="180" r="78" fill="#f5d5b8"/>
+  <path d="M 132 180 A 78 78 0 0 1 288 180 L 288 150 Q 210 70 132 150 Z" fill="#e57aa8"/>
+  <path d="M 150 145 Q 185 105 225 135 Q 258 115 280 150 L 275 130 Q 225 80 165 105 Q 150 120 150 145 Z" fill="#f090ba"/>
+  <circle cx="182" cy="188" r="9" fill="#4a2e3a"/>
+  <circle cx="238" cy="188" r="9" fill="#4a2e3a"/>
+  <path d="M 194 220 Q 210 234 226 220" fill="none" stroke="#c9836a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 150 300 Q 210 272 270 300 L 285 460 Q 210 485 135 460 Z" fill="#f2e8d8"/>
+  <path d="M 135 460 Q 210 485 285 460 L 330 700 Q 210 745 90 700 Z" fill="#c85a7a"/>
+  <path d="M 135 460 Q 210 485 285 460 L 290 490 Q 210 515 130 490 Z" fill="#a84a66"/>
+  <path d="M 150 300 L 118 500 L 92 492 L 128 296 Z" fill="#f2e8d8"/>
+  <path d="M 270 300 L 302 500 L 328 492 L 292 296 Z" fill="#f2e8d8"/>
+  <rect x="84" y="488" width="34" height="34" rx="16" fill="#f5d5b8"/>
+  <rect x="302" y="488" width="34" height="34" rx="16" fill="#f5d5b8"/>
+  <rect x="158" y="700" width="42" height="150" fill="#f5d5b8"/>
+  <rect x="220" y="700" width="42" height="150" fill="#f5d5b8"/>
+  <rect x="152" y="840" width="52" height="38" rx="12" fill="#a84a66"/>
+  <rect x="216" y="840" width="52" height="38" rx="12" fill="#a84a66"/>
+</svg>

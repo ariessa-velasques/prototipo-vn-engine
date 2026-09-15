@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900">
+  <!-- Aiko — expressão neutra (cabelo longo azul, uniforme escolar) -->
+  <path d="M 130 180 Q 100 400 115 640 L 165 620 L 150 300 Z" fill="#2e4a8f"/>
+  <path d="M 290 180 Q 320 400 305 640 L 255 620 L 270 300 Z" fill="#2e4a8f"/>
+  <rect x="185" y="230" width="50" height="60" fill="#f0c8a8"/>
+  <circle cx="210" cy="180" r="78" fill="#f0c8a8"/>
+  <path d="M 132 180 A 78 78 0 0 1 288 180 L 288 150 Q 210 70 132 150 Z" fill="#3a5cb0"/>
+  <path d="M 132 165 Q 170 130 210 150 Q 250 130 288 165 L 288 140 Q 210 80 132 140 Z" fill="#4a6cc4"/>
+  <circle cx="182" cy="188" r="9" fill="#31324a"/>
+  <circle cx="238" cy="188" r="9" fill="#31324a"/>
+  <path d="M 196 222 Q 210 230 224 222" fill="none" stroke="#c47a5a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 150 300 Q 210 270 270 300 L 300 560 Q 210 590 120 560 Z" fill="#4a5670"/>
+  <path d="M 185 285 L 210 330 L 235 285 L 235 310 L 210 355 L 185 310 Z" fill="#e8ecf4"/>
+  <path d="M 197 300 L 210 330 L 223 300 L 210 345 Z" fill="#b03a4a"/>
+  <path d="M 120 560 Q 210 590 300 560 L 315 700 Q 210 735 105 700 Z" fill="#31384a"/>
+  <path d="M 150 300 L 120 560 L 95 550 L 130 295 Z" fill="#4a5670"/>
+  <path d="M 270 300 L 300 560 L 325 550 L 290 295 Z" fill="#4a5670"/>
+  <rect x="88" y="545" width="34" height="34" rx="16" fill="#f0c8a8"/>
+  <rect x="298" y="545" width="34" height="34" rx="16" fill="#f0c8a8"/>
+  <rect x="155" y="700" width="44" height="150" fill="#f0c8a8"/>
+  <rect x="221" y="700" width="44" height="150" fill="#f0c8a8"/>
+  <rect x="150" y="840" width="54" height="40" rx="10" fill="#31324a"/>
+  <rect x="216" y="840" width="54" height="40" rx="10" fill="#31324a"/>
+</svg>

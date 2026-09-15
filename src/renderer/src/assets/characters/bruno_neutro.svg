@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900">
+  <!-- Bruno — expressão neutra (cabelo castanho curto, moletom verde) -->
+  <rect x="185" y="230" width="50" height="60" fill="#e2b48c"/>
+  <circle cx="210" cy="180" r="78" fill="#e2b48c"/>
+  <path d="M 132 180 A 78 78 0 0 1 288 180 L 288 155 Q 270 90 210 95 Q 150 90 132 155 Z" fill="#6b4a2e"/>
+  <path d="M 140 150 Q 175 110 215 125 Q 255 112 282 150 L 282 135 Q 240 85 180 95 Q 150 105 140 135 Z" fill="#7d5a3a"/>
+  <circle cx="182" cy="188" r="9" fill="#3a2e24"/>
+  <circle cx="238" cy="188" r="9" fill="#3a2e24"/>
+  <path d="M 196 224 Q 210 218 224 224" fill="none" stroke="#b5875e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 145 295 Q 210 265 275 295 L 310 590 Q 210 625 110 590 Z" fill="#3e7a52"/>
+  <path d="M 175 290 Q 210 320 245 290 L 238 305 Q 210 335 182 305 Z" fill="#2e5c3e"/>
+  <rect x="200" y="330" width="20" height="200" rx="8" fill="#2e5c3e"/>
+  <path d="M 145 295 L 110 590 L 82 578 L 122 288 Z" fill="#3e7a52"/>
+  <path d="M 275 295 L 310 590 L 338 578 L 298 288 Z" fill="#3e7a52"/>
+  <rect x="76" y="572" width="36" height="36" rx="17" fill="#e2b48c"/>
+  <rect x="308" y="572" width="36" height="36" rx="17" fill="#e2b48c"/>
+  <path d="M 118 585 Q 210 615 302 585 L 300 720 L 120 720 Z" fill="#44506b"/>
+  <rect x="150" y="700" width="52" height="150" fill="#44506b"/>
+  <rect x="218" y="700" width="52" height="150" fill="#44506b"/>
+  <rect x="150" y="830" width="52" height="24" fill="#e2b48c"/>
+  <rect x="218" y="830" width="52" height="24" fill="#e2b48c"/>
+  <rect x="144" y="848" width="62" height="34" rx="10" fill="#f2f2ee"/>
+  <rect x="214" y="848" width="62" height="34" rx="10" fill="#f2f2ee"/>
+</svg>

@@ -1,0 +1,65 @@
+/* Tokens de cor e reset básico da interface do editor. */
+:root {
+  --bg-app: #16151d;
+  --bg-panel: #201f2b;
+  --bg-panel-soft: #2a2938;
+  --bg-input: #16151d;
+
+  --border: #38364a;
+  --border-strong: #4a4862;
+
+  --text-1: rgba(245, 243, 255, 0.92);
+  --text-2: rgba(225, 222, 245, 0.62);
+  --text-3: rgba(225, 222, 245, 0.4);
+
+  --accent: #8a76d6;
+  --accent-soft: rgba(138, 118, 214, 0.18);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* As opções do dropdown são pintadas pelo sistema: sem cores explícitas
+   elas caem no preto padrão, ilegível sobre o tema escuro. */
+option {
+  color: var(--text-1);
+  background: var(--bg-panel-soft);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-1);
+  background: var(--bg-app);
+  line-height: 1.5;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    'Helvetica Neue',
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+input,
+textarea {
+  user-select: text;
+}
