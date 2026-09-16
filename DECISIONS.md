@@ -65,6 +65,10 @@ sem mudar o modelo.
 
 ## ADR-0004 — Galeria genérica reutilizada + importação local de imagens (2026-09-03)
 
+> **Nota (2026-09-15):** funcionalidade **adicionada depois** da
+> implementação básica de R1–R4; não deriva de requisito do mapeamento.
+> Ver ADR-0018.
+
 > **Nota (2026-09-03):** o mecanismo de importação foi atualizado pela
 > ADR-0014 — de `URL.createObjectURL` (blob em memória, não persistível)
 > para data URLs, o que tornou as imagens importadas salváveis no projeto
@@ -302,6 +306,10 @@ rastreabilidade R1–R4; o preview reutiliza o componente real do jogo
 
 ## ADR-0014 — Persistência via IPC + arquivo de projeto autocontido (2026-09-03)
 
+> **Nota (2026-09-15):** funcionalidade **adicionada depois** da
+> implementação básica de R1–R4; não deriva de requisito do mapeamento.
+> Ver ADR-0018.
+
 **Decisão:** salvar/abrir projetos em disco com um arquivo único
 (`.vnproj`, JSON) no formato `ProjectFile { version, story,
 importedBackgrounds, importedCharacters }`. O renderer nunca toca o
@@ -333,6 +341,10 @@ de produção reavaliaria (ex.: pasta de projeto com assets separados).
 
 ## ADR-0015 — Múltiplos personagens por cena via lugares fixos do palco (2026-09-03)
 
+> **Nota (2026-09-15):** funcionalidade **adicionada depois** da
+> implementação básica de R1–R4; não deriva de requisito do mapeamento.
+> Ver ADR-0018.
+
 **Decisão:** a cena passa de um personagem único (`characterId` +
 `characterPosition`) para três **lugares fixos** do palco —
 `characters: { esquerda, centro, direita }`, cada um com um sprite ou
@@ -356,6 +368,10 @@ cena — narrador e vozes fora de quadro seguem possíveis.
 ---
 
 ## ADR-0016 — Personagem fixo por cena, expressão por fala; sprites agrupados por convenção de nome (2026-09-03)
+
+> **Nota (2026-09-15):** funcionalidade **adicionada depois** da
+> implementação básica de R1–R4; não deriva de requisito do mapeamento.
+> Ver ADR-0018.
 
 **Decisão:** três mudanças ligadas entre si.
 
@@ -419,6 +435,10 @@ para `version: 2`.
 
 ## ADR-0017 — Geração do executável disparada pela própria ferramenta (2026-09-03)
 
+> **Nota (2026-09-15):** refinamento **adicionado depois** — o requisito
+> básico de R3 (exportar como executável) já era atendido pela ADR-0010.
+> Ver ADR-0018.
+
 **Estende a ADR-0010.**
 
 **Decisão:** a exportação do jogo deixa de ser um procedimento manual de
@@ -464,3 +484,54 @@ toca o disco — ele pede, o main executa.
 2. Alvos cruzados dependem do ambiente: gerar `.exe` a partir de Linux
    exige wine; `.dmg` exige macOS. Quando o empacotador falha por esse
    motivo, a mensagem de erro diz o porquê em vez de mostrar o log cru.
+
+---
+
+## ADR-0018 — Registro explícito das funcionalidades além dos requisitos básicos (2026-09-15)
+
+**Decisão:** separar, na documentação, o que deriva diretamente de R1–R4
+(na forma mínima descrita no artigo do TCC) do que foi **adicionado
+depois** por necessidade de demonstração ou de uso realista da
+ferramenta. As funcionalidades adicionadas ganham uma seção própria no
+README e no ARCHITECTURE.md ("Funcionalidades adicionadas além dos
+requisitos básicos"), com a relação de cada uma com os requisitos, e as
+ADRs correspondentes recebem uma nota de cabeçalho. A tabela de
+rastreabilidade requisito → código passa a listar apenas a implementação
+básica de cada requisito.
+
+Classificação adotada:
+
+| Funcionalidade | Classificação | ADR |
+| --- | --- | --- |
+| Menu inicial do jogo + editor de menu | Adicional, sem relação com R1–R4 | ADR-0011, ADR-0013 |
+| Importação de imagens do escritor | Extensão de R1 | ADR-0004, ADR-0014 |
+| Persistência de projetos (`.vnproj`) | Adicional, sem relação com R1–R4 | ADR-0014 |
+| Múltiplos personagens por cena | Extensão de R1 | ADR-0015 |
+| Expressões por fala | Extensão de R1 | ADR-0016 |
+| Geração do executável pela interface | Refinamento de R3 (básico: ADR-0010) | ADR-0017 |
+| Exportar .json | Ponte manual anterior à ADR-0017 | ADR-0010 |
+
+**Contexto:** o protótipo cresceu além do escopo mínimo de R1–R4 durante
+o desenvolvimento (ADR-0011 em diante). O artigo do TCC descreve os
+requisitos de forma enxuta — "escolhe o *background*, escolhe o
+personagem e define os diálogos" (R1), "exportado como executável" (R3)
+— e, sem essa separação, a documentação sugeria que persistência,
+elenco múltiplo, expressões e exportação pela interface eram parte do
+atendimento aos requisitos. Até aqui só o menu do jogo (ADR-0011) estava
+marcado como adicional.
+
+**Justificativa:** a rastreabilidade requisito → código é o argumento
+central de que o protótipo materializa os requisitos derivados do
+mapeamento sistemático. Misturar extras nessa evidência enfraquece o
+argumento e dificulta, na avaliação do TCC2, distinguir o que os
+participantes usam por causa dos requisitos e o que usam por causa das
+adições. Marcar explicitamente o que veio depois também deixa
+registrado que essas adições são candidatas a revisão dos requisitos —
+o artigo prevê que os resultados da avaliação sirvam para "revisar e
+refinar os requisitos".
+
+**Critério usado:** uma funcionalidade é "básica" quando é o mínimo
+necessário para a frase do requisito no artigo ser verdadeira; é
+"extensão" quando amplia um requisito existente (mais personagens,
+expressões, arte própria, ação na interface em vez de linha de comando);
+é "adicional" quando nenhum requisito a menciona (menu, salvar/abrir).

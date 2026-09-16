@@ -126,15 +126,30 @@ Princípios:
 
 | Requisito | Onde está implementado |
 | --- | --- |
-| **R1 — Edição visual direta** | Modo "Editor de cena": `src/renderer/src/components/SceneEditor.tsx` (layout), com seleção de fundo em `BackgroundPanel.tsx` (sobre `AssetGallery.tsx`), elenco por lugar do palco em `CharacterPanel.tsx` (ADR-0015) com os sprites agrupados por personagem em `characters.ts` (convenção `identidade_expressao`, ADR-0016), a sequência de falas em `DialogueEditor.tsx` (falante e expressão escolhidos em seletores; texto por formulário) e o resultado em tempo real em `ScenePreview.tsx`/`SceneStage.tsx` (a fala selecionada define o texto e a expressão exibidos). Não existe nenhum campo de código ou script na interface. |
+| **R1 — Edição visual direta** | Modo "Editor de cena": `src/renderer/src/components/SceneEditor.tsx` (layout), com seleção de fundo em `BackgroundPanel.tsx` (sobre `AssetGallery.tsx`), seleção de personagem em `CharacterPanel.tsx`, a sequência de falas em `DialogueEditor.tsx` (texto por formulário) e o resultado em tempo real em `ScenePreview.tsx`/`SceneStage.tsx`. Não existe nenhum campo de código ou script na interface. *Elenco múltiplo por lugar do palco, expressões por fala e importação de imagens são extensões posteriores de R1 — ver seção seguinte.* |
 | **R2 — Controle autoral** | Propriedade transversal, verificável por ausência: os únicos pontos de entrada de texto narrativo são `DialogueEditor.tsx` (falas, pergunta e opções de escolha; falante e expressão são seleção, não geração), o título da cena (`SceneEditor.tsx`) e o título/texto "Sobre" do jogo (`MenuEditor.tsx`) — todos digitação manual. Não há dependência nem chamada de IA no projeto (ver tabela de dependências); a CSP (`src/renderer/index.html`) bloqueia qualquer origem externa. |
-| **R3 — Execução desktop** | `src/main/index.ts` cria a janela nativa (mesmo processo principal para editor e jogo). Exportação como executável **pela própria interface**: `components/ExportDialog.tsx` (escolha do sistema operacional e da pasta, progresso ao vivo) sobre o IPC `jogo:exportar` em `src/main/index.ts`, que roda o build dedicado do jogo (`App.tsx` + `GameApp.tsx` + história pelo alias `@story` em `electron.vite.config.ts`) e o electron-builder — ADR-0017. Verificado: o artefato roda noutra máquina sem a engine, carregando de `file://` dentro do próprio `app.asar`, e não contém as telas de edição (ADR-0010). O modo "Jogar" do editor e o jogo exportado usam o mesmo `player/StoryPlayer.tsx`. Persistência local de projetos (`.vnproj`) via IPC + diálogos nativos (`src/main/index.ts`, `src/preload/index.ts` — ADR-0014); importação de imagens 100% local como data URLs (`AssetGallery.tsx`). |
+| **R3 — Execução desktop** | `src/main/index.ts` cria a janela nativa (mesmo processo principal para editor e jogo). Exportação como executável **pela própria interface**: `components/ExportDialog.tsx` (escolha do sistema operacional e da pasta, progresso ao vivo) sobre o IPC `jogo:exportar` em `src/main/index.ts`, que roda o build dedicado do jogo (`App.tsx` + `GameApp.tsx` + história pelo alias `@story` em `electron.vite.config.ts`) e o electron-builder — ADR-0017. Verificado: o artefato roda noutra máquina sem a engine, carregando de `file://` dentro do próprio `app.asar`, e não contém as telas de edição (ADR-0010). O modo "Jogar" do editor e o jogo exportado usam o mesmo `player/StoryPlayer.tsx`. *A ação de gerar o executável pela interface (ADR-0017) é um refinamento posterior: o requisito básico já era atendido pelo build de linha de comando (ADR-0010). Persistência de projetos e importação de imagens não derivam de R3 — ver seção seguinte.* |
 | **R4 — Edição visual de ramificações** | Modelo de dados em `types.ts` (`DialogueChoice` com `ChoiceOption[]`, `Scene.nextSceneId`, `Scene.graphPosition` — ADR-0012). Criação/edição da escolha e das opções (com destino escolhido ou criado na hora) em `DialogueEditor.tsx`. Modo "Ramificações": `BranchEditor.tsx` (grafo React Flow — cada `Scene` é um nó; aresta rotulada por opção de escolha, aresta tracejada para `nextSceneId`; conectar por arrasto, duplo clique abre a cena). No jogo, a escolha vira botões em `player/StoryPlayer.tsx`. |
 
-*(O menu inicial do jogo — `player/GameMenu.tsx` — e seu editor —
-`components/MenuEditor.tsx` — são adicionais de demonstração e
-deliberadamente não constam na tabela: não derivam de nenhum requisito do
-mapeamento sistemático; ver ADR-0011 e ADR-0013.)*
+## Funcionalidades adicionadas além dos requisitos básicos
+
+A tabela acima cobre apenas o que deriva dos requisitos do mapeamento
+sistemático, na forma mínima descrita no artigo. As funcionalidades a
+seguir foram **adicionadas depois** da implementação básica de R1–R4 e
+**não derivam de nenhum requisito** — surgiram da necessidade de
+demonstrar e usar a ferramenta de forma realista. Ficam deliberadamente
+fora da tabela de rastreabilidade para não inflar a evidência de
+atendimento aos requisitos (ADR-0018).
+
+| Funcionalidade | Onde está | Relação com R1–R4 | ADR |
+| --- | --- | --- | --- |
+| Menu inicial do jogo e editor de menu | `player/GameMenu.tsx`, `components/MenuEditor.tsx`, campos `title`/`about` em `types.ts` | Nenhuma; adicional de demonstração. | ADR-0011, ADR-0013 |
+| Importação de imagens do escritor | `AssetGallery.tsx` (leitura como data URL), `CharacterPanel.tsx` (importação múltipla de sprites) | Extensão de R1; o princípio "100% local" é coerente com R3. | ADR-0004, ADR-0014 |
+| Persistência de projetos (`.vnproj`) | IPC `projeto:salvar`/`projeto:abrir` em `src/main/index.ts`, ponte em `src/preload/index.ts`, tipo `ProjectFile` em `types.ts` | Nenhuma; o mapeamento não trata de salvar/abrir. | ADR-0014 |
+| Múltiplos personagens por cena | `Scene.characters = {esquerda, centro, direita}` em `types.ts`; `CharacterPanel.tsx`; `SceneStage.tsx` | Extensão de R1 (requisito fala em *o* personagem). | ADR-0015 |
+| Expressões por fala | `characters.ts` (convenção `identidade_expressao`, agrupamento); `DialogueLine.speakerId`/`expression` em `types.ts`; seletores em `DialogueEditor.tsx` | Extensão de R1. | ADR-0016 |
+| Geração do executável pela interface | `components/ExportDialog.tsx`; IPC `jogo:exportar` em `src/main/index.ts`; alias `@story` em `electron.vite.config.ts` | Refinamento posterior de R3 (o básico era o build por linha de comando, ADR-0010). | ADR-0017 |
+| Exportar .json | `EditorApp.tsx` | Ponte manual anterior à ADR-0017; mantida como apoio. | ADR-0010 |
 
 ## Limites conhecidos desta etapa
 

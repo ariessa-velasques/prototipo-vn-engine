@@ -40,8 +40,11 @@ pelas abas do topo:
    a última fala numa escolha (pergunta + opções, cada uma apontando para
    uma cena existente ou criada na hora), definir a próxima cena ou criar
    uma com "+ Criar próxima cena". A fala selecionada aparece no palco.
-   Importação de imagens do computador do escritor (salvas junto com o
-   projeto). **Sprites de personagem** seguem a convenção de nome
+   *Elenco múltiplo, expressões por fala e importação de imagens são
+   adições posteriores ao requisito básico — ver seção
+   "Funcionalidades adicionadas".* Importação de imagens do computador
+   do escritor (salvas junto com o projeto). **Sprites de personagem**
+   seguem a convenção de nome
    `personagem_expressao.png` (ex.: `maria_triste.png`): ao importar
    vários arquivos, as expressões do mesmo personagem são agrupadas
    sozinhas; sem "_" no nome, o arquivo vira um personagem de expressão
@@ -52,17 +55,19 @@ pelas abas do topo:
    nó até outro conecta cenas; duplo clique abre a cena no editor.
 3. **Menu do jogo:** edita o título do jogo e o texto da tela "Sobre"
    (autoria, créditos), com preview ao vivo do menu (estrutura fixa:
-   Jogar, Sobre, Sair — adicional de demonstração, fora do escopo formal
-   R1–R4).
+   Jogar, Sobre, Sair — **adicional de demonstração, adicionado depois
+   e fora do escopo formal R1–R4**, ADR-0011/0013).
 4. **Jogar:** percorre a história em tela cheia — cada clique avança uma
    fala; a escolha mostra as opções como botões; sem escolha e sem
    próxima cena, fim.
 
 No cabeçalho, **Abrir / Salvar** persistem o projeto num arquivo único
 `.vnproj` (história + imagens importadas, como data URLs — autocontido e
-100% local), **⤓ Gerar executável** (ao lado de "Jogar") produz o jogo
-como aplicativo independente para Windows, Linux ou macOS, e
-**Exportar .json** baixa o projeto no mesmo formato embutido no jogo.
+100% local; **funcionalidade adicionada depois, fora de R1–R4**,
+ADR-0014), **⤓ Gerar executável** (ao lado de "Jogar") produz o jogo
+como aplicativo independente para Windows, Linux ou macOS (refinamento
+posterior de R3, ADR-0017), e **Exportar .json** baixa o projeto no
+mesmo formato embutido no jogo.
 
 O **jogo exportado** abre no menu inicial e roda a história embutida no
 executável — incluindo imagens importadas pelo escritor.
@@ -73,6 +78,30 @@ e o build do executável; **entrada, saída e reposicionamento de
 personagem no meio de uma cena** — hoje o elenco é fixo por cena por
 decisão de modelo (ADR-0016), e a forma de expressar essas mudanças é
 encadear outra cena com "próxima cena".
+
+## Funcionalidades adicionadas além dos requisitos básicos
+
+Os requisitos R1–R4 vêm do mapeamento sistemático do TCC1 e foram
+implementados primeiro, na forma mínima descrita no artigo: uma cena com
+fundo, **um** personagem e diálogo (R1); nenhuma geração automática (R2);
+execução local e build do jogo como executável (R3); grafo de
+ramificações (R4). As funcionalidades abaixo foram **adicionadas
+depois**, ao longo do desenvolvimento do protótipo, e **não derivam de
+nenhum requisito do mapeamento** — surgiram de necessidades práticas de
+demonstração e de uso da ferramenta. Cada uma está registrada em uma ADR
+própria em [DECISIONS.md](./DECISIONS.md), e nenhuma entra na tabela de
+rastreabilidade requisito → código do
+[ARCHITECTURE.md](./ARCHITECTURE.md) (ver ADR-0018).
+
+| Funcionalidade | O que faz | Relação com R1–R4 | ADR |
+| --- | --- | --- | --- |
+| **Menu inicial do jogo + editor de menu** | O jogo exportado abre num menu (Jogar / Sobre / Sair); a aba "Menu do jogo" edita título e texto "Sobre". | Nenhuma — adicional de demonstração da experiência de jogo. | ADR-0011, ADR-0013 |
+| **Importação de imagens do escritor** | Fundos e sprites importados do computador, além dos placeholders embutidos. | Extensão de R1 (o requisito fala apenas em *escolher* fundo e personagem). | ADR-0004, ADR-0014 |
+| **Persistência de projetos (`.vnproj`)** | Abrir / Salvar no cabeçalho; arquivo único e autocontido (história + imagens importadas). | Nenhuma — o mapeamento não trata de salvar/abrir projetos. Respeita R3 por ser 100% local. | ADR-0014 |
+| **Múltiplos personagens por cena** | Até três personagens no palco (esquerda / centro / direita). | Extensão de R1 (o requisito descreve *o* personagem, no singular). | ADR-0015 |
+| **Expressões por fala** | Sprites `personagem_expressao` agrupados automaticamente; cada fala escolhe quem fala e com que expressão. | Extensão de R1. | ADR-0016 |
+| **Geração do executável pela interface** | Botão "⤓ Gerar executável" com escolha de SO e pasta, sem linha de comando. | Refinamento de R3: o requisito básico (build do jogo como executável) já era atendido por `npm run build:game:*` (ADR-0010); a ação na interface foi adicionada depois. | ADR-0017 |
+| **Exportar .json** | Baixa o projeto no formato embutido no jogo. | Ponte manual entre editor e build, anterior à ADR-0017; mantida como apoio. | ADR-0010 |
 
 ## Como rodar
 
@@ -164,17 +193,17 @@ prototipo/
             ├── components/
             │   ├── SceneEditor.tsx     # modo editor de cena (R1)
             │   ├── BackgroundPanel.tsx # galeria de fundos (R1)
-            │   ├── CharacterPanel.tsx  # elenco da cena: lugares + personagens (R1)
+            │   ├── CharacterPanel.tsx  # elenco da cena: lugares + personagens (R1; múltiplos personagens = adicional, ADR-0015)
             │   ├── AssetGallery.tsx    # galeria genérica reutilizada pelos painéis
             │   ├── DialogueEditor.tsx  # falas (quem fala + expressão), escolha, próxima cena (R1/R4)
             │   ├── ScenePreview.tsx    # moldura do preview no editor (R1)
             │   ├── SceneStage.tsx      # palco compartilhado editor/jogo
             │   ├── BranchEditor.tsx    # grafo de ramificações (R4)
-            │   ├── MenuEditor.tsx      # editor do menu do jogo (extra, fora de R1-R4)
+            │   ├── MenuEditor.tsx      # editor do menu do jogo (adicional posterior, fora de R1-R4)
             │   └── ExportDialog.tsx    # gerar executável: SO + destino + progresso (R3)
             └── player/
                 ├── StoryPlayer.tsx     # modo de jogo (percorre a história)
-                └── GameMenu.tsx        # menu do jogo exportado (extra, fora de R1-R4)
+                └── GameMenu.tsx        # menu do jogo exportado (adicional posterior, fora de R1-R4)
 ```
 
 Os pontos do código que materializam cada requisito estão comentados com o
